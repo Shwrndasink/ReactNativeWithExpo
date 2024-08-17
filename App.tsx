@@ -1,5 +1,24 @@
 import React from "react";
-import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import { View, Text, SafeAreaView, StyleSheet, FlatList } from "react-native";
+
+const ListItems = [
+  {
+    key: "1",
+    name: "Learning to build a react native application",
+  },
+  {
+    key: "2",
+    name: "Learn to implement styles",
+  },
+  {
+    key: "3",
+    name: "Make a FlatList",
+  },
+  {
+    key: "4",
+    name: "Come back later...",
+  },
+];
 
 function App() {
   return (
@@ -10,12 +29,20 @@ function App() {
         </Text>
         <View style={styles.blackBoxWrapper}>
           <Text style={styles.blackBox}>Black box with white text</Text>
+          <FlatList
+            style={{ marginTop: 20 }}
+            data={ListItems}
+            keyExtractor={(item) => {
+              return item.key;
+            }}
+            renderItem={({ item }) => <Text>{item.name}</Text>}
+          ></FlatList>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
+// Should be refactored, to be more dry
 const styles = StyleSheet.create({
   container: {
     flex: 1,
